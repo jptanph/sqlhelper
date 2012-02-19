@@ -20,7 +20,7 @@ class Sql_helper extends Sql_drivers
 		}
 		else
 		{
-			
+			return $this->exec_query($sSql);
 		}
 	}
 	
@@ -64,5 +64,5 @@ class Sql_helper extends Sql_drivers
 		}
 		
 		return $aData;
-	}
+	}	
 }
