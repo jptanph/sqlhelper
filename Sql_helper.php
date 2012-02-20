@@ -1,4 +1,4 @@
-<?php
+	<?php
 
 require_once('core/Sql_config.php');
 require_once('core/Sql_drivers.php');
@@ -16,6 +16,10 @@ class Sql_helper extends Sql_drivers
 		$sQryInfo = $this->_get_query_type($sSql);
 		if( $sQryInfo == 'SELECT' )
 		{
+			if( $sRowType == 'row' )
+			{
+				return $this->_singleFetch($sSql);
+			}
 			return $this->_fetchData($sSql);		
 		}
 		else
@@ -53,7 +57,7 @@ class Sql_helper extends Sql_drivers
 		
 		if($aResult)
 		{
-			while( $aRows = mysql_fetch_array( $aResult ) )
+			while( $aRows = $this->fetch_array( $aResult ) )
 			{
 				$aData[] = $aRows;
 			}
@@ -66,6 +70,15 @@ class Sql_helper extends Sql_drivers
 		return $aData;
 	}
 
-	private function _singleFetch()
-	{}
+	private function _singleFetch( $sSql )
+	{
+		$aData = array();
+		$aResult = $this->exec_query($sSql);
+		while ( $rows = $this->fetch_array($aResult))
+		{
+			$aData = $rows;
+		}
+		
+		return $aData;
+	}
 }
