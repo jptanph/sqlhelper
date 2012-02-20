@@ -11,7 +11,7 @@ class Sql_helper extends Sql_drivers
 		parent::__construct();
 	}
 				
-	public function query($sSql)	
+	public function query( $sSql , $sRowType = NULL )	
 	{
 		$sQryInfo = $this->_get_query_type($sSql);
 		if( $sQryInfo == 'SELECT' )
@@ -64,5 +64,8 @@ class Sql_helper extends Sql_drivers
 		}
 		
 		return $aData;
-	}	
+	}
+
+	private function _singleFetch()
+	{}
 }
