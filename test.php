@@ -5,17 +5,21 @@ require_once('Sql_helper.php');
 $sql = new Sql_helper();
 
 $sql->init_db('test');
-$aResult = $sql->query('SELECT * from filter','row');
+$aResult = $sql->query('SELECT * from filter');
 
-$delete = $sql->query("DELETE FROM filter where f_data = 'test'");
+$aData = array
+(
+	'f_data' => 'name1'
+);
+
+//$bResult = $sql->insert($aData,'filter1');
+//$bResult1 = $sql->update($aData," f_data = 'test3' ",'filter');
 
 
-var_dump($delete);
-if($delete){
-	echo'asd';
-}else
-{
-	echo'no';
-}
-
+// if($bResult1)
+// {
+	// echo'yes';
+// }else{
+	// echo'no';
+// }
 var_dump($aResult);
